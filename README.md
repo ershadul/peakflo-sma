@@ -9,7 +9,7 @@
     - npm install
 
 ## Usage
-    - Run: `npm run calfare <pathot-to-csv-file>`
+    - npm run calfare <pathot-to-csv-file>
 
 ## Assumption & Limitations
     - Weekly Cap is considered for every week of the calendar year. For example, Jan 1-7 is the first week of the year
