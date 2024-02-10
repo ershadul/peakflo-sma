@@ -6,62 +6,7 @@ moment().weekday(0); // Sunday is the first day of the week
 
 export type FareRuleType = { [key: string]: number };
 
-export const FareRules: FareRuleType = {
-    // green-green
-    'Green-Green-Peak': 2,
-    'Green-Green-NonPeak': 1,
-    'Green-Green-DailyCap': 8,
-    'Green-Green-WeeklyCap': 55,
-    // red-red
-    'Red-Red-Peak': 3,
-    'Red-Red-NonPeak': 2,
-    'Red-Red-DailyCap': 12,
-    'Red-Red-WeeklyCap': 70,
-    // green-red
-    'Green-Red-Peak': 4,
-    'Green-Red-NonPeak': 3,
-    'Green-Red-DailyCap': 15,
-    'Green-Red-WeeklyCap': 90,
-    // red-green
-    'Red-Green-Peak': 3,
-    'Red-Green-NonPeak': 2,
-    'Red-Green-DailyCap': 15,
-    'Red-Green-WeeklyCap': 90,
-}
-
 export type PeakHoursType = { [key: string]: Array<string[]> };
-
-const PeakHours: PeakHoursType  = {
-    // Sunday
-    '0': [
-        ['18:00', '23:00'],
-    ],
-    '1': [
-        ['08:00', '10:00'],
-        ['16:30', '19:00'],
-    ],
-    '2': [
-        ['08:00', '10:00'],
-        ['16:30', '19:00'],
-    ],
-    '3': [
-        ['08:00', '10:00'],
-        ['16:30', '19:00'],
-    ],
-    '4': [
-        ['08:00', '10:00'],
-        ['16:30', '19:00'],
-    ],
-    '5': [
-        ['08:00', '10:00'],
-        ['16:30', '19:00'],
-    ],
-    // Saturday
-    '6': [
-        ['10:00', '14:00'],
-        ['18:00', '23:00'],
-    ],
-};
 
 export class FareCalulator {
     peakHours: PeakHoursType;
@@ -162,6 +107,7 @@ export class FareCalulator {
 }
 
 if (require.main === module) {
+    
     const args = process.argv.slice(2);
     if (args.length === 0) {
         console.log('Please provide a csv file path (absolute or relative) as an argument.');
@@ -170,6 +116,62 @@ if (require.main === module) {
         console.log('Example with absolute path: npm run calfare /Users/username/Documents/test.csv');
         process.exit(1);
     }
+
+    const FareRules: FareRuleType = {
+        // green-green
+        'Green-Green-Peak': 2,
+        'Green-Green-NonPeak': 1,
+        'Green-Green-DailyCap': 8,
+        'Green-Green-WeeklyCap': 55,
+        // red-red
+        'Red-Red-Peak': 3,
+        'Red-Red-NonPeak': 2,
+        'Red-Red-DailyCap': 12,
+        'Red-Red-WeeklyCap': 70,
+        // green-red
+        'Green-Red-Peak': 4,
+        'Green-Red-NonPeak': 3,
+        'Green-Red-DailyCap': 15,
+        'Green-Red-WeeklyCap': 90,
+        // red-green
+        'Red-Green-Peak': 3,
+        'Red-Green-NonPeak': 2,
+        'Red-Green-DailyCap': 15,
+        'Red-Green-WeeklyCap': 90,
+    };
+
+    const PeakHours: PeakHoursType  = {
+        // Sunday
+        '0': [
+            ['18:00', '23:00'],
+        ],
+        '1': [
+            ['08:00', '10:00'],
+            ['16:30', '19:00'],
+        ],
+        '2': [
+            ['08:00', '10:00'],
+            ['16:30', '19:00'],
+        ],
+        '3': [
+            ['08:00', '10:00'],
+            ['16:30', '19:00'],
+        ],
+        '4': [
+            ['08:00', '10:00'],
+            ['16:30', '19:00'],
+        ],
+        '5': [
+            ['08:00', '10:00'],
+            ['16:30', '19:00'],
+        ],
+        // Saturday
+        '6': [
+            ['10:00', '14:00'],
+            ['18:00', '23:00'],
+        ],
+    };
+
     const calculator = new FareCalulator(PeakHours, FareRules);
     calculator.calculateFare(args[0]);
 }
