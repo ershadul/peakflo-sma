@@ -1,0 +1,13 @@
+{
+  "scripts": {
+    "calfare": "npx ts-node index.ts"
+  },
+  "devDependencies": {
+    "@types/node": "^20.11.17",
+    "typescript": "^5.3.3"
+  },
+  "dependencies": {
+    "csv": "^6.3.6",
+    "moment": "^2.30.1"
+  }
+}
